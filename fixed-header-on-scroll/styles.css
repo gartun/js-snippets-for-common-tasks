@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #5E69E6;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+header.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+nav {
+  background: #32E303;
+  flex: 0 0 60%;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  background: #E3CA03;
+  list-style: none;
+}
+
+main {
+  margin-top: 1em;
+  font-size: 2rem;
+}

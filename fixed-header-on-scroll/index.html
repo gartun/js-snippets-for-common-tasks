@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fixed Header</title>
+    <link rel="stylesheet" href="styles.css" type="text/css" media="all" />
+</head>
+
+<body>
+<header>
+  <h1>Logo</h1>
+  <nav>
+    <ul>
+      <li>Link1</li>
+      <li>Link2</li>
+      <li>Link3</li>
+    </ul>
+  </nav>
+</header>
+<main>
+  Currently, we’re handling the GET request to the root URL, /v1, inside the src/routes/index.js. This works as expected and there is nothing wrong with it. However, as your application grows, you want to keep things tidy. You want concerns to be separated — you want a clear separation between the code that handles the request and the code that generates the response that will be sent back to the client. To achieve this, we write controllers. Controllers are simply functions that handle requests coming through a particular URL.
+
+To get started, create a controllers/ folder inside the src/ folder. Inside controllers create two files: index.js and home.js. We would export our functions from within index.js. You could name home.js anything you want, but typically you want to name controllers after what they control. For example, you might have a file usersController.js to hold every function related to users in your app.
+
+Open src/controllers/home.js 
+</main>
+<script src="./script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

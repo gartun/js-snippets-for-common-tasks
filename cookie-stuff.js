@@ -13,6 +13,17 @@ function GetCookie(name){
   return null;
 }
 
+/*
+A cookie value cannot contain semicolons,
+commas, or spaces. For this reason, you
+will need to use the JavaScript's built-in
+function encodeURIComponent() to encode
+the values containing these characters
+before storing it in the cookie. Likewise,
+you'll need to use the corresponding
+decodeURIComponent() function when you
+read the cookie value.
+*/
 function SetCookie(name, value) {
   const argv = SetCookie.arguments;
   const argc = SetCookie.arguments.length;
@@ -56,6 +67,27 @@ function getCookieVal(offset) {
   const endstr = document.cookie.indexOf (";", offset);
   if (endstr == -1)
   endstr = document.cookie.length;
-  return unescape(document.cookie.substring(offset, endstr));
+  return decodeURIComponent(document.cookie.substring(offset, endstr));
 }
 
+/*
+from https://www.tutorialrepublic.com/javascript-tutorial/javascript-cookies.php
+            ||
+            ||
+            ||
+           \  /
+            \/
+*/
+
+function setCookie(name, value, daysToLive) {
+  // Encode value in order to escape semicolons, commas, and whitespace
+  const cookie = name + "=" + encodeURIComponent(value);
+
+  if (typeof daysToLive === "number") {
+    /* Sets the max-age attribute so that the cookie expires
+    after the specified number of days */
+    cookie += "; max-age=" + (daysToLive * 24 * 60 * 60);
+
+    document.cookie = cookie;
+  }
+}
