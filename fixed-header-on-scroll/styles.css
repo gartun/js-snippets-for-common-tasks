@@ -9,6 +9,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  padding: .5em 1em 0;
+  color: ghostwhite;
 }
 
 header.fixed {
@@ -18,15 +20,14 @@ header.fixed {
   width: 100%;
 }
 
+
 nav {
-  background: #32E303;
   flex: 0 0 60%;
 }
 
 nav ul {
   display: flex;
   justify-content: space-around;
-  background: #E3CA03;
   list-style: none;
 }
 
