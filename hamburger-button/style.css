@@ -6,29 +6,38 @@
 
 body {
   background: #323332;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
+header {
+  background-color: rgba(134, 43, 76, 0.4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+header h1 {
+  color: ghostwhite;
+}
+
+/*###############################
+|| Hamburger-button starts
+################################*/
 .hmbrgr-btn-wrapper {
-  border: 1px solid ghostwhite;
-  border-radius: 1px;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   overflow: hidden;
+  z-index: 2;
 }
 
 .hmbrgr-btn {
   position: relative;
   background: ghostwhite;
-  width: 30px;
-  height: 3px;
+  width: 25px;
+  height: 2px;
   border-radius: 3px;
   transition: background-color .45s;
 }
@@ -36,8 +45,8 @@ body {
 .hmbrgr-btn::before, .hmbrgr-btn::after {
   position: absolute;
   content: "";
-  width: 30px;
-  height: 3px;
+  width: 25px;
+  height: 2px;
   border-radius: 3px;
   background-color: ghostwhite;
   transition: transform .5s;
@@ -61,4 +70,27 @@ body {
 
 .hmbrgr-btn-wrapper.open .hmbrgr-btn::after {
   transform: translateY(-8px) rotate(45deg);
+}
+
+
+nav {
+  transform: translateX(100vw);
+  /* opacity: 0;
+  visibility: hidden; */
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-color: #fa540f;
+  transition: transform .6s;
+}
+
+.hmbrgr-btn-wrapper.open + nav {
+  transform: translateX(0);
+}
+
+nav ul {
+  list-style: none;
+  color: ghostwhite;
 }
