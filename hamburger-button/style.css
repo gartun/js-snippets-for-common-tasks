@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #323332;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.hmbrgr-btn-wrapper {
+  border: 1px solid ghostwhite;
+  border-radius: 1px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.hmbrgr-btn {
+  position: relative;
+  background: ghostwhite;
+  width: 30px;
+  height: 3px;
+  border-radius: 3px;
+  transition: background-color .45s;
+}
+
+.hmbrgr-btn::before, .hmbrgr-btn::after {
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 3px;
+  border-radius: 3px;
+  background-color: ghostwhite;
+  transition: transform .5s;
+}
+
+.hmbrgr-btn::before {
+  top: -8px;
+}
+
+.hmbrgr-btn::after {
+  top: 8px;
+}
+
+.hmbrgr-btn-wrapper.open .hmbrgr-btn {
+  background-color: transparent;
+}
+
+.hmbrgr-btn-wrapper.open .hmbrgr-btn::before {
+  transform: translateY(8px) rotate(-45deg);
+}
+
+.hmbrgr-btn-wrapper.open .hmbrgr-btn::after {
+  transform: translateY(-8px) rotate(45deg);
+}
