@@ -3,9 +3,9 @@ const header = document.querySelector('header');
 // Boolean for avoiding repetitive tasks
 let isReplaced = false;
 
-window.onscroll = () => {
+window.onscroll = function() {
   const winTop = window.pageYOffset;
-  
+  console.log(winTop, "  ", getHeaderHeight())
   if(winTop > getHeaderHeight()) {
     if(!isReplaced) createReplacer();
     isReplaced = true;
