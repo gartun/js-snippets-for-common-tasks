@@ -121,3 +121,29 @@ nav ul {
     border-radius: 10px;
   }
 }
+
+@media(min-width: 600px) {
+  header {
+    padding: 0 4em;
+    justify-content: space-between;
+  }
+  .hmbrgr-btn-wrapper {
+    display: none;
+  }
+
+  nav {
+    position: static;
+    transform: translateX(0);
+    background: transparent;
+    flex: 0 0 70%;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  nav ul li a {
+    color: ghostwhite
+  }
+}
