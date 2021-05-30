@@ -6,6 +6,7 @@
 
 body {
   background: #323332;
+  overflow-x: hidden;
 }
 
 header {
@@ -15,8 +16,9 @@ header {
   justify-content: space-around;
 }
 
-header h1 {
+header h1 a {
   color: ghostwhite;
+  text-decoration: none;
 }
 
 /*###############################
@@ -28,9 +30,11 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: transparent;
+  border: none;
   cursor: pointer;
   overflow: hidden;
-  z-index: 2;
+  z-index: 99;
 }
 
 .hmbrgr-btn {
@@ -93,4 +97,27 @@ nav {
 nav ul {
   list-style: none;
   color: ghostwhite;
+}
+
+#skip-link {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  width: 1px;
+  top: auto;
+}
+
+#skip-link:focus {
+  animation: show-skip-link .7s forwards;
+}
+
+@keyframes show-skip-link {
+  to {
+    left: 10px;
+    height: auto;
+    width: auto;
+    background: rgb(239, 98, 109);
+    padding: .5em;
+    border-radius: 10px;
+  }
 }

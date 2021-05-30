@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,19 +8,33 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+  <a id="skip-link" href="#main-content">Skip link</a>
   <header>
-    <h1>LOGO</h1>
-    <div class="hmbrgr-btn-wrapper">
-      <div class="hmbrgr-btn"></div>
+    <h1><a href="#">LOGO</a></h1>
+
+    <!-- use tabindex as it must be focusable -->
+    <div
+      id="hamburger"
+      class="hmbrgr-btn-wrapper"
+      tabindex="0"
+      aria-controls="main-nav"
+      aria-label="Navigasyon listesini aç"
+      aria-expanded="false"
+    >
+      <div class="hmbrgr-btn" role="presentation"></div>
     </div>
-    <nav>
+    <nav id="main-nav">
       <ul>
-        <li>Link 1</li>
-        <li>Link 2</li>
-        <li>Link 3</li>
+        <li><a href="#">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
       </ul>
     </nav>
   </header>
+
+  <main id="main-content">
+
+  </main>
 
   <script src="./script.js"></script>
 </body>
