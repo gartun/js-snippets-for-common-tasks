@@ -5,7 +5,6 @@ let isReplaced = false;
 
 window.onscroll = function() {
   const winTop = window.pageYOffset;
-  console.log(winTop, "  ", getHeaderHeight())
   if(winTop > getHeaderHeight()) {
     if(!isReplaced) createReplacer();
     isReplaced = true;
