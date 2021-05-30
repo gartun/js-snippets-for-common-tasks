@@ -102,8 +102,8 @@ nav ul {
 #skip-link {
   position: absolute;
   left: -9999px;
-  height: 1px;
-  width: 1px;
+  height: auto;
+  width: auto;
   top: auto;
 }
 
@@ -114,8 +114,6 @@ nav ul {
 @keyframes show-skip-link {
   to {
     left: 10px;
-    height: auto;
-    width: auto;
     background: rgb(239, 98, 109);
     padding: .5em;
     border-radius: 10px;
