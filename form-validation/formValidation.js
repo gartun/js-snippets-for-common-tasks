@@ -74,4 +74,32 @@ var PwdValidation = function(pwd) {
 PwdValidation.prototype = Object.create(InputValidation.prototype);
 // ...Inheritance
 
-module.exports = EmailValidation;
+PwdValidation.prototype.validate = function() {
+  
+  var pwd = this.value;
+  
+  var errors = [];
+  
+  if (!/[a-z]/.test(pwd)) {
+    errors.push('En az bir küçük harf gerekli');
+  }
+  if (!/[A-Z]/.test(pwd)) {
+    errors.push('En az bir büyük harf gerekli');
+  }
+  if (!/\d/.test(pwd)) {
+    errors.push('En az bir sayı gerekli(0-9)');
+  }
+  if (/\W/.test(pwd)) {
+    errors.push('Geçersiz Karakter(_*= vb.)');
+  }
+  if (pwd.length < 6) {
+    errors.push('Şifre en az 6 karakterden oluşmalı');
+  }
+  
+  return errors.length === 0 ? true : [0, errors];
+}
+
+module.exports = {
+  EmailValidation,
+  PwdValidation
+}
