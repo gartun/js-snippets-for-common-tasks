@@ -1,7 +1,7 @@
 const { 
   EmailValidation,
   PwdValidation
-  } = require('./formValidation');
+ } = require('./formValidation');
 
 describe('Email validation and its methods', () => {
   
@@ -13,14 +13,15 @@ describe('Email validation and its methods', () => {
     ['array'],
     '       '
   ];
+
   const emailFalse1 = 'testEtBeni';
   
   const invalidEmails = [
-    'artungokhan',
-    'artungokhan@g.com',
-    '#artun@gmail.com',
+    'dummyemail',
+    'dummyemail@g.com',
+    '#dummy@gmail.com',
     'şüçiüğ@gmail.com',
-    'artun@gmail.c'
+    'dummyemail@gmail.c',
   ];
   
   it('throws error for inappropriate email', () => {
@@ -28,7 +29,7 @@ describe('Email validation and its methods', () => {
       
       expect(() => {
         new EmailValidation(ema)
-      }).toThrowError(new Error('value in email field is not good!!!'));
+      }).toThrowError(new Error('email alanını ya boş bıraktınız ya da String veri tıpı dışında bir veri tipi girdiniz!'));
       
     });
   });
@@ -64,11 +65,11 @@ describe('Password validation and its methods', () => {
     'Acgh2': ['Şifre en az 6 karakterden oluşmalı'],
     'zxcvbn6m': ['En az bir büyük harf gerekli'],
     'sAdftgyi': ['En az bir sayı gerekli(0-9)'],
-    'a!-/$4As': ['Geçersiz Karakter(_*= vb.)'],
+    'a!-/$4As': ['En az bir özel işaret gerekli(_*= vb.)'],
     'ASDR56HJ': ['En az bir küçük harf gerekli'],
     'zx!@5': [
           'En az bir büyük harf gerekli',
-          'Geçersiz Karakter(_*= vb.)',
+          'En az bir özel işaret gerekli(_*= vb.)',
           'Şifre en az 6 karakterden oluşmalı'
          ],
     'AECF': [
@@ -93,32 +94,89 @@ describe('Password validation and its methods', () => {
     pwdsToThrowErrs.forEach(p => {
       expect(() => {
         new PwdValidation(p)
-      }).toThrowError(new Error('value in password field is not good!!!'));
+      }).toThrowError(new Error('password alanını ya boş bıraktınız ya da String veri tıpı dışında bir veri tipi girdiniz!'));
     })
   })
-  
-  it('returns an array with its first element being zero if password is not valid', () => {
-    
-    InvalPwdsArr.forEach(iP => {
-      const pValid = new PwdValidation(iP);
-      
-      expect(pValid.validate()).toContain(0);
-    })
+ 
+   
+  it("should return an error as password is not long enough", () => {
+    const pwds = [
+      {
+        pwd: "a.K5f8",
+        floor: 7
+      },
+      {
+        pwd: "a.K5f8a",
+        floor: 8
+      },
+    ];
+
+    pwds.forEach(p => {
+      const res = new PwdValidation(p.pwd).validate(p.floor);
+
+      expect(res[1]).toEqual(["Şifre en az " + p.floor + " karakterden oluşmalı"])
+    });
+
   });
-  
-  it('returns correct reasons why pwd is invalid', () => {
-    
-    InvalPwdsArr.forEach(iP => {
-      const pValid = new PwdValidation(iP);
-      
-      const res = pValid.validate();
-      
-      expect(res[1]).toEqual(InvalidPwds[iP])
-    })
+
+  it("should return an error as password is too long", () => {
+    const pwds = [
+      {
+        pwd: "a.K5f8j4la5",
+        ceil: 10
+      },
+      {
+        pwd: "a.K5f8aK8Gcla",
+        ceil: 12
+      },
+    ];
+
+    pwds.forEach(p => {
+      const res = new PwdValidation(p.pwd).validate(undefined, p.ceil);
+
+      expect(res[1]).toEqual(["Şifre en fazla " + p.ceil + " karakterden oluşabilir"])
+    });
+
+  });
+
+  it("should return an error as the password lacks a lowercase letter", () => {
+    const res = new PwdValidation("A.56ANK").validate();
+
+    expect(res[1]).toEqual(["En az bir küçük harf gerekli"]);
+  });
+
+  it("should return an error as the password lacks an uppercase letter", () => {
+    const res = new PwdValidation("a.56ank").validate();
+
+    expect(res[1]).toEqual(["En az bir büyük harf gerekli"]);
+  });
+
+  it("should return an error as the password lacks a number", () => {
+    const res = new PwdValidation("a.Lank").validate();
+
+    expect(res[1]).toEqual(["En az bir sayı gerekli(0-9)"]);
+  });
+
+  it("should return an error as the password lacks a special character", () => {
+    const res = new PwdValidation("aLank5").validate();
+
+    expect(res[1]).toEqual(["En az bir özel işaret gerekli(_*= vb.)"]);
+  });
+
+  it("should return an error as the password lacks a number and a lowercase letter", () => {
+    const res = new PwdValidation("A.AALP").validate();
+
+    expect(res[1]).toEqual(["En az bir küçük harf gerekli", "En az bir sayı gerekli(0-9)"])
   })
-  
+
+  it("shouldn'nt return an lowercase letter error as we disable it", () => {
+    const res = new PwdValidation("A.56ANK").validate( undefined, undefined, false);
+
+    expect(res).toBeTruthy();
+  });
+
   it('returns true for valid pwds', () => {
-    const pValid = new PwdValidation('Asdf45');
+    const pValid = new PwdValidation('Asdf45.');
     
     expect(pValid.validate()).toBeTruthy();
   })
