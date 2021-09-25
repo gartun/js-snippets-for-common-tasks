@@ -4,33 +4,40 @@
   box-sizing: border-box;
 }
 
+.container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
 header {
   background-color: #5E69E6;
+  color: ghostwhite;
+}
+
+header > .container {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: .5em 1em 0;
-  color: ghostwhite;
 }
 
 header.fixed {
   position: fixed;
-  top: 0;
-  left: 0;
+  left: 0; 
   width: 100%;
   z-index: 99;
 }
 
-header.animation-class {
-  animation: heightIt 10s forwards !important;
+header.fixed.animation-class {
+  animation: heightIt 1s forwards !important;
 }
 
 @keyframes heightIt {
   from {
-    transform: translateY(-100%) !important;
+    top: -100%;
   }
   to {
-    transform: translateY(0%) !important;
+    top: 0;
   }
 }
 
