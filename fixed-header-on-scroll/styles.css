@@ -18,8 +18,21 @@ header.fixed {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 99;
 }
 
+header.animation-class {
+  animation: heightIt 10s forwards !important;
+}
+
+@keyframes heightIt {
+  from {
+    transform: translateY(-100%) !important;
+  }
+  to {
+    transform: translateY(0%) !important;
+  }
+}
 
 nav {
   flex: 0 0 60%;

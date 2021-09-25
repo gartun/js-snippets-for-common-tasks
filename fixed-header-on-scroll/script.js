@@ -6,15 +6,22 @@ let isReplaced = false;
 window.onscroll = function() {
   const winTop = window.pageYOffset;
   if(winTop > getHeaderHeight()) {
-    if(!isReplaced) createReplacer();
-    isReplaced = true;
+    if(!isReplaced) {
+      createReplacer();
+      isReplaced = true;
+    }
 
     header.classList.add('fixed');
+    header.classList.add('animation-class');
   } else {
-    if(isReplaced) removeReplacer();
-    isReplaced = false;
+    if(isReplaced) {
+      removeReplacer();
+      
+      isReplaced = false;
+    }
 
     header.classList.remove('fixed');
+    header.classList.remove('animation-class');
   }
   
 }
@@ -31,9 +38,9 @@ function createReplacer() {
   // NOT TESTED! added here so that screen-readers don't get confused
   replacer.setAttribute("aria-hidden", "true");
 
-
-  replacer.classList.add("replacer-div");
   replacer.style.height = getHeaderHeight() + "px";
+  replacer.className = "replacer-div";
+  
   document.body.insertBefore(replacer, header);
 }
 
